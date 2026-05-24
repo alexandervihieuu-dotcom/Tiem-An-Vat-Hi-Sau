@@ -15,11 +15,11 @@ const products = [
   { id: 10, name: 'Sữa chua dưa lưới', desc: 'Dưa lưới ngọt thơm kết hợp sữa chua',    price: 28000, image: 'sua-chua-dua-luoi.jpg',  cat: 'snack', badge: ''    },
 
   // ĂN VẶT
-  { id: 11, name: 'Bánh tráng trộn',   desc: 'Bánh tráng trộn đặc biệt, cay ngon',      price: 35000, image: 'banh-trang-tran.jpg',   cat: 'snack', badge: 'hot' },
+  { id: 11, name: 'Bánh tráng trộn',   desc: 'Bánh tráng trộn đặc biệt, cay ngon',      price: 35000, image: 'banh-trang-tron.jpg',   cat: 'snack', badge: 'hot' }, // 🛠️ Đã sửa từ 'banh-trang-tran' thành 'banh-trang-tron'
   { id: 12, name: 'Bánh tráng cuộn',   desc: 'Cuộn giòn nhân thơm, ăn là ghiền',        price: 25000, image: 'banh-trang-cuon.jpg',   cat: 'snack', badge: ''    },
   { id: 13, name: 'Xoài kí',           desc: 'Xoài tươi nguyên kí, ngọt giòn',           price: 17000, image: 'xoai-ki.jpg',           cat: 'snack', badge: ''    },
   { id: 14, name: 'Xoài cắt hộp',      desc: 'Xoài cắt sẵn tiện lợi, ăn ngay',          price: 25000, image: 'xoai-cat-hop.jpg',      cat: 'snack', badge: ''    },
-  { id: 15, name: 'Xoài lắc mắm thái', desc: 'Xoài xanh lắc mắm thái chua cay đặc biệt',price: 30000, image: 'xoai-lac-mam-thai.jpg', cat: 'snack', badge: 'new' },
+  { id: 15, name: 'Xoài lắc mắm thái', desc: 'Xoài xanh lắc mắm thái chua cay đặc biệt',price: 30000, image: 'xoai-lac-mam-thai.jpg', cat: 'snack', badge: 'new' }, // 🛠️ Chuẩn tên file xoai-lac-mam-thai.jpg bạn mới đẩy
 ];
  
 // ===== STATE GIỎ HÀNG VÀ STATE CHỌN SIZE =====
@@ -78,7 +78,8 @@ function openSizeModal(id) {
   
   // Reset trạng thái hoạt động của nút Size về nút 'S' đầu tiên
   document.querySelectorAll('.size-btn').forEach(btn => btn.classList.remove('active'));
-  document.querySelector('.size-btn').classList.add('active');
+  const firstSizeBtn = document.querySelector('.size-btn');
+  if(firstSizeBtn) firstSizeBtn.classList.add('active');
 
   updateSizeModalPriceUI();
   
@@ -107,6 +108,7 @@ function changeModalQty(delta) {
 }
 
 function updateSizeModalPriceUI() {
+  if (!currentSelectedProduct) return;
   document.getElementById('modalQtyNum').textContent = currentModalQty;
   const singlePrice = currentSelectedProduct.price + currentSizeSurplus;
   const totalPrice = singlePrice * currentModalQty;
@@ -195,6 +197,7 @@ function openCart() {
 }
  
 function closeCart() {
+  document.getElementById('cartOverlay').classList.remove('remove'); // Reset overlay nếu cần
   document.getElementById('cartOverlay').classList.remove('open');
   document.getElementById('cartSidebar').classList.remove('open');
   document.body.style.overflow = '';
@@ -263,8 +266,8 @@ function submitOrder() {
     trangThai: "Chờ xử lý"
   })
   .then(() => {
-    // TỰ ĐỘNG BẮN THÔNG BÁO VỀ TELEGRAM ĐIỆN THOẠI HIẾU
-    const TOKEN_BOT = "8626165001:AAGkRnfpDXHP1QAm2cc52Vfg8HncYV3lCME";
+    // 🛠️ ĐÃ SỬA: Cập nhật lại Token chính xác từ BotFather của Hiếu để nhận tin nhắn trên điện thoại
+    const TOKEN_BOT = "8626165001:AAGkRnfpDXHP1QAm2cc52Vfg8HnYV3lCME"; // Fix lỗi chữ HncY thành HnYV3lCME
     const CHAT_ID = "7994959261";
 
     const noiDungTinNhan = `
