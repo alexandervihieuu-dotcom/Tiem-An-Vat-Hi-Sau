@@ -1,0 +1,21 @@
+{
+  "short_name": "Thực Đơn",
+  "name": "Ứng dụng Thực Đơn Hôm Nay",
+  "icons": [
+    {
+      "src": "assets/images/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "assets/images/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/index.html",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "theme_color": "#FF5722",
+  "orientation": "portrait"
+}

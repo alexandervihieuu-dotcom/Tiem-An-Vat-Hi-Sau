@@ -18,6 +18,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tiệm Hai Sáu – Trà & Ăn Vặt</title>
   
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#FF5722">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" media="screen" href="style.css">
 </head>
@@ -185,6 +190,16 @@
   </script>
 
   <script src="script.js"></script>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then(reg => console.log('PWA: Service Worker chạy thành công!', reg))
+          .catch(err => console.error('PWA: Kích hoạt Service Worker thất bại:', err));
+      });
+    }
+  </script>
 
   <div class="support-fixed-bar">
     <a href="tel:0326650638" class="support-item phone">
