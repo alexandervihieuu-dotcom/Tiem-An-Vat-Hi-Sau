@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+<body>
+    
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Tiệm Hai Sáu</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+        }
+        .admin-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        h2 {
+            color: #ff5722;
+            border-bottom: 2px solid #ff5722;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #ff5722;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .status-badge {
+            background: #ffc107;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        /* Hiệu ứng nhấp nháy cho đơn hàng mới */
+        .new-order {
+            animation: flash 1.5s infinite;
+        }
+        @keyframes flash {
+            0% { background-color: #fff3cd; }
+            50% { background-color: #ffffff; }
+            100% { background-color: #fff3cd; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="admin-container">
+    <h2>⚡ HỆ THỐNG NHẬN ĐƠN THỜI GIAN THỰC - TIỆM HAI SÁU</h2>
+    <p>Trang này sẽ tự động cập nhật và kêu tính năng thông báo khi có khách đặt hàng.</p>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Thời gian</th>
+                <th>Khách hàng</th>
+                <th>Số điện thoại</th>
+                <th>Món đặt</th>
+                <th>Tổng tiền</th>
+                <th>Trạng thái</th>
+            </tr>
+        </thead>
+        <tbody id="danh-sach-don">
+        </tbody>
+    </table>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+<script>
+  // Đã thay thế cấu hình Firebase chính xác của bạn
+  const firebaseConfig = {
+    apiKey: "AIzaSyDHZ8womVCqHm4oVXwnc_O61E91D1Uf1W8",
+    authDomain: "flutter-ai-playground-f1f07.firebaseapp.com",
+    databaseURL: "https://flutter-ai-playground-f1f07-default-rtdb.firebaseio.com",
+    projectId: "flutter-ai-playground-f1f07",
+    storageBucket: "flutter-ai-playground-f1f07.firebasestorage.app",
+    messagingSenderId: "947808260070",
+    appId: "1:947808260070:web:52b9cc246b972908d4d027"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const database = firebase.database();
+
+  const danhSachDonDB = database.ref('don_hang');
+  const bảngĐơnHàng = document.getElementById('danh-sach-don');
+
+  // Khởi tạo âm thanh thông báo "Ting Ting" khi có đơn mới
+  const amThanhThongBao = new Audio('https://assets.mixkit.co/active_storage/sfx/2869/2869-600.wav');
+
+  // Lắng nghe sự kiện khi có dữ liệu mới thêm vào Firebase
+  let listDonHangDauTien = true; 
+  danhSachDonDB.on('child_added', (snapshot) => {
+      const donHang = snapshot.val();
+      
+      // Tạo một hàng mới trong bảng
+      const row = document.createElement('tr');
+      
+      // Nếu không phải lượt tải trang đầu tiên (tức là có đơn mới vừa bấm xong) thì nhấp nháy và kêu ting ting
+      if (!listDonHangDauTien) {
+          row.classList.add('new-order');
+          amThanhThongBao.play();
+      }
+
+      row.innerHTML = `
+          <td>${donHang.thoiGian}</td>
+          <td><strong>${donHang.tenKhachhang}</strong></td>
+          <td><a href="tel:${donHang.soDienThoai}">${donHang.soDienThoai}</a></td>
+          <td>${donHang.monAn}</td>
+          <td style="color: #e65100; font-weight: bold;">${donHang.gia}</td>
+          <td><span class="status-badge">${donHang.trangThai}</span></td>
+      `;
+
+      // Chèn đơn hàng mới lên đầu bảng
+      bảngĐơnHàng.insertBefore(row, bảngĐơnHàng.firstChild);
+  });
+
+  // Đánh dấu đã tải xong danh sách cũ, các đơn sau này vào sẽ là đơn mới
+  danhSachDonDB.once('value', () => {
+      listDonHangDauTien = false;
+  });
+</script>
+</body>
+</html>

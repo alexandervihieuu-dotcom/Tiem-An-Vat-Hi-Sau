@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
+    <script src='script.js'></script>
+</head>
+<body>
+    
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tiệm Hai Sáu – Trà & Ăn Vặt</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a class="logo" href="#">🍹 Tiệm Hai <span>Sáu</span></a>
+      <button class="cart-btn" onclick="openCart()">
+        🛒 Giỏ hàng
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="hero">
+    <h1>🍹 Tiệm Hai Sáu</h1>
+    <p>Trà trái cây – Sữa chua – Ăn vặt ngon, ship tận nơi!</p>
+    <div class="hero-tags">
+      <span class="hero-tag">🚀 Giao hàng nhanh</span>
+      <span class="hero-tag">💯 Hàng chất lượng</span>
+      <span class="hero-tag">🧋 Trà tươi mỗi ngày</span>
+    </div>
+  </div>
+
+  <div class="main">
+
+    <div class="category-bar">
+      <button class="cat-btn active" onclick="filterCat(this, 'all')">🍽️ Tất cả</button>
+      <button class="cat-btn" onclick="filterCat(this, 'snack')">🥗 Ăn vặt</button>
+    </div>
+
+    <div class="section-title">🔥 Thực đơn hôm nay</div>
+    <div class="product-grid" id="productGrid"></div>
+
+  </div>
+
+  <footer>
+    <div class="logo-f">🍹 Tiệm Hai Sáu</div>
+    <p>© 2025 Tiệm Hai Sáu – Trà & ăn vặt ngon mỗi ngày!</p>
+    <p style="margin-top: 6px">📞 Hotline: 0326 650 638 &nbsp;|&nbsp; 📍 Đà Nẵng</p>
+  </footer>
+
+  <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h2>🛒 Giỏ hàng</h2>
+      <button class="close-btn" onclick="closeCart()">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="cart-empty">
+        <div class="big">🛒</div>
+        <p>Giỏ hàng trống!</p>
+        <p style="font-size: 13px; margin-top: 6px; color: #aaa;">Thêm món ngon vào nhé 😋</p>
+      </div>
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display: none">
+      <div class="cart-total">
+        <span class="cart-total-label">Tổng cộng</span>
+        <span class="cart-total-price" id="cartTotal">0₫</span>
+      </div>
+      <button class="checkout-btn" onclick="openOrderModal()">🛍️ Đặt hàng ngay</button>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="orderModal">
+    <div class="modal">
+      <h2>📦 Thông tin đặt hàng</h2>
+      <p class="subtitle">Điền thông tin để chúng tôi giao hàng đến bạn!</p>
+      <div class="order-summary" id="modalSummary"></div>
+      <div class="form-group">
+        <label>👤 Họ và tên *</label>
+        <input type="text" id="cusName" placeholder="Nguyễn Văn A">
+      </div>
+      <div class="form-group">
+        <label>📞 Số điện thoại *</label>
+        <input type="tel" id="cusPhone" placeholder="0326 650 638">
+      </div>
+      <div class="form-group">
+        <label>📍 Địa chỉ giao hàng *</label>
+        <input type="text" id="cusAddress" placeholder="123 đường ABC, Đà Nẵng">
+      </div>
+      <div class="form-group">
+        <label>💳 Phương thức thanh toán</label>
+        <select id="cusPayment">
+          <option value="cod">💵 Tiền mặt khi nhận hàng (COD)</option>
+          <option value="banking">🏦 Chuyển khoản ngân hàng</option>
+          <option value="momo">💜 Ví MoMo</option>
+          <option value="zalo">🔵 ZaloPay</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>📝 Ghi chú (không bắt buộc)</label>
+        <textarea id="cusNote" placeholder="Ghi chú thêm cho người giao hàng..."></textarea>
+      </div>
+      <button class="submit-btn" onclick="submitOrder()">✅ Xác nhận đặt hàng</button>
+      <button class="cancel-btn" onclick="closeOrderModal()">Quay lại giỏ hàng</button>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="successModal">
+    <div class="modal success-modal">
+      <div class="success-icon">🎉</div>
+      <h2>Đặt hàng thành công!</h2>
+      <p id="successMsg">Cảm ơn bạn đã đặt hàng!</p>
+      <button class="success-btn" onclick="closeSuccess()">🛍️ Tiếp tục mua sắm</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+  <script>
+    // Cấu hình Firebase chính xác của bạn
+    const firebaseConfig = {
+      apiKey: "AIzaSyDHZ8womVCqHm4oVXwnc_O61E91D1Uf1W8",
+      authDomain: "flutter-ai-playground-f1f07.firebaseapp.com",
+      databaseURL: "https://flutter-ai-playground-f1f07-default-rtdb.firebaseio.com",
+      projectId: "flutter-ai-playground-f1f07",
+      storageBucket: "flutter-ai-playground-f1f07.firebasestorage.app",
+      messagingSenderId: "947808260070",
+      appId: "1:947808260070:web:52b9cc246b972908d4d027"
+    };
+
+    // Khởi tạo Firebase toàn cục cho dự án
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+  </script>
+
+  <script src="script.js"></script>
+</body>
+</html>
