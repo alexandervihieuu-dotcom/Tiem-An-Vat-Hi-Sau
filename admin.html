@@ -10,12 +10,11 @@
 </head>
 <body>
     
-</body>
-</html>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Tiệm Hai Sáu</title>
     <style>
@@ -64,7 +63,7 @@
             font-size: 12px;
             font-weight: bold;
         }
-        /* Hiệu ứng nhấp nháy cho đơn hàng mới */
+        /* Hiệu ứng nhấp nháy làm nổi bật đơn hàng mới nổ */
         .new-order {
             animation: flash 1.5s infinite;
         }
@@ -93,14 +92,15 @@
             </tr>
         </thead>
         <tbody id="danh-sach-don">
-        </tbody>
+            </tbody>
     </table>
 </div>
 
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
 <script>
-  // Đã thay thế cấu hình Firebase chính xác của bạn
+  // Cấu hình Firebase Realtime Database kết nối đồng bộ
   const firebaseConfig = {
     apiKey: "AIzaSyDHZ8womVCqHm4oVXwnc_O61E91D1Uf1W8",
     authDomain: "flutter-ai-playground-f1f07.firebaseapp.com",
@@ -111,6 +111,7 @@
     appId: "1:947808260070:web:52b9cc246b972908d4d027"
   };
 
+  // Khởi tạo ứng dụng
   firebase.initializeApp(firebaseConfig);
   const database = firebase.database();
 
@@ -125,32 +126,34 @@
   danhSachDonDB.on('child_added', (snapshot) => {
       const donHang = snapshot.val();
       
-      // Tạo một hàng mới trong bảng
+      // Tạo một hàng (tr) mới trong bảng
       const row = document.createElement('tr');
       
-      // Nếu không phải lượt tải trang đầu tiên (tức là có đơn mới vừa bấm xong) thì nhấp nháy và kêu ting ting
+      // Nếu không phải lượt tải trang đầu tiên (tức là có đơn mới khách vừa bấm xong) thì nhấp nháy và kêu ting ting
       if (!listDonHangDauTien) {
           row.classList.add('new-order');
-          amThanhThongBao.play();
+          amThanhThongBao.play().catch(err => console.log("Trình duyệt chặn âm thanh tự động:", err));
       }
 
+      // Điền thông tin vào cột, xử lý chuỗi phòng trường hợp thiếu thuộc tính không bị lỗi giao diện
       row.innerHTML = `
-          <td>${donHang.thoiGian}</td>
-          <td><strong>${donHang.tenKhachhang}</strong></td>
-          <td><a href="tel:${donHang.soDienThoai}">${donHang.soDienThoai}</a></td>
-          <td>${donHang.monAn}</td>
-          <td style="color: #e65100; font-weight: bold;">${donHang.gia}</td>
-          <td><span class="status-badge">${donHang.trangThai}</span></td>
+          <td>${donHang.thoiGian || ''}</td>
+          <td><strong>${donHang.tenKhachhang || donHang.cusName || ''}</strong></td>
+          <td><a href="tel:${donHang.soDienThoai || donHang.cusPhone || ''}">${donHang.soDienThoai || donHang.cusPhone || ''}</a></td>
+          <td>${donHang.monAn || ''}</td>
+          <td style="color: #e65100; font-weight: bold;">${donHang.gia || donHang.tongTien || ''}</td>
+          <td><span class="status-badge">${donHang.trangThai || 'Chờ xử lý'}</span></td>
       `;
 
-      // Chèn đơn hàng mới lên đầu bảng
+      // Chèn đơn hàng mới nổ lên vị trí đầu tiên của bảng (Đơn mới nhất ở trên đầu)
       bảngĐơnHàng.insertBefore(row, bảngĐơnHàng.firstChild);
   });
 
-  // Đánh dấu đã tải xong danh sách cũ, các đơn sau này vào sẽ là đơn mới
+  // Đánh dấu đã tải xong toàn bộ danh sách cũ cũ trên hệ thống, các đơn n phát sinh sau này mới kêu nhạc
   danhSachDonDB.once('value', () => {
       listDonHangDauTien = false;
   });
 </script>
+
 </body>
 </html>

@@ -14,10 +14,13 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tiệm Hai Sáu – Trà & Ăn Vặt</title>
+  
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  
+  <link rel="stylesheet" type="text/css" media="screen" href="style.css">
 </head>
 <body>
 
@@ -42,7 +45,6 @@
   </div>
 
   <div class="main">
-
     <div class="category-bar">
       <button class="cat-btn active" onclick="filterCat(this, 'all')">🍽️ Tất cả</button>
       <button class="cat-btn" onclick="filterCat(this, 'snack')">🥗 Ăn vặt</button>
@@ -50,7 +52,6 @@
 
     <div class="section-title">🔥 Thực đơn hôm nay</div>
     <div class="product-grid" id="productGrid"></div>
-
   </div>
 
   <footer>
@@ -132,7 +133,7 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
   <script>
-    // Cấu hình Firebase chính xác của bạn
+    // Cấu hình Firebase Realtime Database
     const firebaseConfig = {
       apiKey: "AIzaSyDHZ8womVCqHm4oVXwnc_O61E91D1Uf1W8",
       authDomain: "flutter-ai-playground-f1f07.firebaseapp.com",
@@ -143,7 +144,7 @@
       appId: "1:947808260070:web:52b9cc246b972908d4d027"
     };
 
-    // Khởi tạo Firebase toàn cục cho dự án
+    // Khởi tạo Firebase toàn cục để biến 'database' truyền được vào file script.js
     firebase.initializeApp(firebaseConfig);
     const database = firebase.database();
   </script>
