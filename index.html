@@ -148,7 +148,7 @@
         <label>📝 Ghi chú (không bắt buộc)</label>
         <textarea id="cusNote" placeholder="Ghi chú thêm cho người giao hàng..."></textarea>
       </div>
-      <button class="submit-btn" onclick="submitOrder()">✅ Xác nhận đặt hàng</button>
+      <button class="submit-btn btn-submit" onclick="submitOrder()">✅ Xác nhận đặt hàng</button>
       <button class="cancel-btn" onclick="closeOrderModal()">Quay lại giỏ hàng</button>
     </div>
   </div>
@@ -168,7 +168,7 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
   <script>
-    // Cấu hình Firebase Realtime Database
+    // Cấu hình Firebase Realtime Database toàn cục
     const firebaseConfig = {
       apiKey: "AIzaSyDHZ8womVCqHm4oVXwnc_O61E91D1Uf1W8",
       authDomain: "flutter-ai-playground-f1f07.firebaseapp.com",
@@ -179,27 +179,28 @@
       appId: "1:947808260070:web:52b9cc246b972908d4d027"
     };
 
-    // Khởi tạo Firebase toàn cục để biến 'database' truyền được vào file script.js
+    // Khởi tạo Firebase
     firebase.initializeApp(firebaseConfig);
     const database = firebase.database();
   </script>
 
   <script src="script.js"></script>
+
   <div class="support-fixed-bar">
-  <a href="tel:0326650638" class="support-item phone">
-    <span class="support-icon">📞</span>
-    <span class="support-text">Gọi điện</span>
-  </a>
-  
-  <a href="https://zalo.me/0326650638" target="_blank" class="support-item zalo">
-    <span class="support-icon">💬</span>
-    <span class="support-text">Zalo</span>
-  </a>
-  
-  <a href="https://web.facebook.com/vi.huong.100685?mibextid=wwXIfr&rdid=6ZjH3JGZvXXWJ7YS&share_url=https%3A%2F%2Fweb.facebook.com%2Fshare%2F1B1Jdcdn9V%2F%3Fmibextid%3DwwXIfr%26_rdc%3D1%26_rdr" target="_blank" class="support-item messenger">
-    <span class="support-icon">✉️</span>
-    <span class="support-text">Messenger</span>
-  </a>
-</div>
+    <a href="tel:0326650638" class="support-item phone">
+      <span class="support-icon">📞</span>
+      <span class="support-text">Gọi điện</span>
+    </a>
+    
+    <a href="https://zalo.me/0326650638" target="_blank" class="support-item zalo">
+      <span class="support-icon">💬</span>
+      <span class="support-text">Zalo</span>
+    </a>
+    
+    <a href="https://web.facebook.com/vi.huong.100685?mibextid=wwXIfr&rdid=6ZjH3JGZvXXWJ7YS&share_url=https%3A%2F%2Fweb.facebook.com%2Fshare%2F1B1Jdcdn9V%2F%3Fmibextid%3DwwXIfr%26_rdc%3D1%26_rdr" target="_blank" class="support-item messenger">
+      <span class="support-icon">✉️</span>
+      <span class="support-text">Messenger</span>
+    </a>
+  </div>
 </body>
 </html>
