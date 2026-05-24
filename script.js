@@ -15,18 +15,18 @@ const products = [
   { id: 10, name: 'Sữa chua dưa lưới', desc: 'Dưa lưới ngọt thơm kết hợp sữa chua',    price: 28000, image: 'sua-chua-dua-luoi.jpg',  cat: 'snack', badge: ''    },
 
   // ĂN VẶT
-  { id: 11, name: 'Bánh tráng trộn',   desc: 'Bánh tráng trộn đặc biệt, cay ngon',      price: 35000, image: 'banh-trang-tron.jpg',   cat: 'snack', badge: 'hot' }, // 🛠️ Đã sửa từ 'banh-trang-tran' thành 'banh-trang-tron'
+  { id: 11, name: 'Bánh tráng trộn',   desc: 'Bánh tráng trộn đặc biệt, cay ngon',      price: 35000, image: 'banh-trang-tron.jpg',   cat: 'snack', badge: 'hot' },
   { id: 12, name: 'Bánh tráng cuộn',   desc: 'Cuộn giòn nhân thơm, ăn là ghiền',        price: 25000, image: 'banh-trang-cuon.jpg',   cat: 'snack', badge: ''    },
   { id: 13, name: 'Xoài kí',           desc: 'Xoài tươi nguyên kí, ngọt giòn',           price: 17000, image: 'xoai-ki.jpg',           cat: 'snack', badge: ''    },
   { id: 14, name: 'Xoài cắt hộp',      desc: 'Xoài cắt sẵn tiện lợi, ăn ngay',          price: 25000, image: 'xoai-cat-hop.jpg',      cat: 'snack', badge: ''    },
-  { id: 15, name: 'Xoài lắc mắm thái', desc: 'Xoài xanh lắc mắm thái chua cay đặc biệt',price: 30000, image: 'xoai-lac-mam-thai.jpg', cat: 'snack', badge: 'new' }, // 🛠️ Chuẩn tên file xoai-lac-mam-thai.jpg bạn mới đẩy
+  { id: 15, name: 'Xoài lắc mắm thái', desc: 'Xoài xanh lắc mắm thái chua cay đặc biệt',price: 30000, image: 'xoai-lac-mam-thai.jpg', cat: 'snack', badge: 'new' },
 ];
  
 // ===== STATE GIỎ HÀNG VÀ STATE CHỌN SIZE =====
 let cart = [];
 let currentSelectedProduct = null;
 let currentSelectedSize = 'S';
-let currentSizeSurplus = 0; // Giá tiền cộng thêm của size
+let currentSizeSurplus = 0; 
 let currentModalQty = 1;
  
 // ===== UTILS =====
@@ -73,10 +73,8 @@ function openSizeModal(id) {
   currentSizeSurplus = 0;
   currentModalQty = 1;
 
-  // Cập nhật text tiêu đề tên món lên modal
   document.getElementById('modalProdName').textContent = prod.name;
   
-  // Reset trạng thái hoạt động của nút Size về nút 'S' đầu tiên
   document.querySelectorAll('.size-btn').forEach(btn => btn.classList.remove('active'));
   const firstSizeBtn = document.querySelector('.size-btn');
   if(firstSizeBtn) firstSizeBtn.classList.add('active');
@@ -103,7 +101,7 @@ function selectSize(element, sizeName, surplusPrice) {
 
 function changeModalQty(delta) {
   currentModalQty += delta;
-  if (currentModalQty < 1) currentModalQty = 1; // Số lượng tối thiểu là 1
+  if (currentModalQty < 1) currentModalQty = 1; 
   updateSizeModalPriceUI();
 }
 
@@ -118,8 +116,6 @@ function updateSizeModalPriceUI() {
 // ===== XÁC NHẬN THÊM VÀO GIỎ =====
 function confirmAddToCart() {
   const finalPrice = currentSelectedProduct.price + currentSizeSurplus;
-  
-  // Tìm xem trong giỏ đã có món này kèm ĐÚNG SIZE NÀY chưa
   const existing = cart.find(c => c.id === currentSelectedProduct.id && c.size === currentSelectedSize);
 
   if (existing) {
@@ -127,7 +123,7 @@ function confirmAddToCart() {
   } else {
     cart.push({
       ...currentSelectedProduct,
-      price: finalPrice, // Giá đã cộng tiền size
+      price: finalPrice, 
       size: currentSelectedSize,
       qty: currentModalQty
     });
@@ -197,7 +193,6 @@ function openCart() {
 }
  
 function closeCart() {
-  document.getElementById('cartOverlay').classList.remove('remove'); // Reset overlay nếu cần
   document.getElementById('cartOverlay').classList.remove('open');
   document.getElementById('cartSidebar').classList.remove('open');
   document.body.style.overflow = '';
@@ -229,7 +224,7 @@ function closeOrderModal() {
   openCart();
 }
  
-// ===== GỬI ĐƠN HÀNG LÊN FIREBASE & BẮN THÔNG BÁO TELEGRAM =====
+// ===== GỬI ĐƠN HÀNG LÊN FIREBASE & BẮN THÔNG BÁO TELEGRAM (BẢN TỐI ƯU 100%) =====
 function submitOrder() {
   const name    = document.getElementById('cusName').value.trim();
   const phone   = document.getElementById('cusPhone').value.trim();
@@ -245,15 +240,22 @@ function submitOrder() {
   const payText = { cod: 'Tiền mặt COD', banking: 'Chuyển khoản', momo: 'MoMo', zalo: 'ZaloPay' }[payment];
   const total   = cart.reduce((s, c) => s + c.price * c.qty, 0);
 
-  // Gộp thông tin kèm Size của từng mặt hàng
   const danhSachMonAn = cart.map(c => `${c.name} [Size ${c.size}] (x${c.qty})`).join(', ');
   const thoiGianHienTai = new Date().toLocaleString('vi-VN');
 
   if (typeof database === 'undefined') {
-    alert('Lỗi: Hệ thống Firebase chưa được tải thành công. Vui lòng kiểm tra lại kết nối mạng!');
+    alert('Lỗi: Hệ thống Firebase chưa được tải thành công!');
     return;
   }
 
+  // Khóa nút đặt hàng để chặn spam đơn bấm liên tục
+  const submitBtn = document.querySelector('.submit-btn');
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '⏳ Đang xử lý đơn hàng...';
+  }
+
+  // 1. Đẩy dữ liệu lên Firebase Realtime Database
   database.ref('don_hang').push({
     tenKhachhang: name,
     soDienThoai: phone,
@@ -266,11 +268,12 @@ function submitOrder() {
     trangThai: "Chờ xử lý"
   })
   .then(() => {
-    // 🛠️ ĐÃ SỬA: Cập nhật lại Token chính xác từ BotFather của Hiếu để nhận tin nhắn trên điện thoại
-    const TOKEN_BOT = "8626165001:AAGkRnfpDXHP1QAm2cc52Vfg8HnYV3lCME"; // Fix lỗi chữ HncY thành HnYV3lCME
-    const CHAT_ID = "7994959261";
+    // 2. BẮN TELEGRAM ĐỘC LẬP (Firebase thành công là chạy ngay)
+    try {
+      const TOKEN_BOT = "8626165001:AAGkRnfpDXHP1QAm2cc52Vfg8HnYV3lCME"; //
+      const CHAT_ID = "7994959261"; //
 
-    const noiDungTinNhan = `
+      const noiDungTinNhan = `
 🔔 <b>CÓ ĐƠN HÀNG MỚI - TIỆM HAI SÁU</b>  
 ━━━━━━━━━━━━━━━━━━
 👤 <b>Khách hàng:</b> ${name}
@@ -285,15 +288,19 @@ function submitOrder() {
 👉 <i>Vui lòng chuẩn bị món ăn cho khách ngay nhé!</i>
 `;
 
-    fetch(`https://api.telegram.org/bot${TOKEN_BOT}/sendMessage`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ chat_id: CHAT_ID, text: noiDungTinNhan, parse_mode: "HTML" })
-    })
-    .then(res => console.log("Thông báo Telegram nổ thành công!"))
-    .catch(err => console.error("Lỗi gửi Telegram:", err));
+      fetch(`https://api.telegram.org/bot${TOKEN_BOT}/sendMessage`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ chat_id: CHAT_ID, text: noiDungTinNhan, parse_mode: "HTML" })
+      })
+      .then(res => console.log("Gửi API Telegram hoàn tất!"))
+      .catch(err => console.error("Lỗi mạng khi gọi Telegram:", err));
 
-    // Đóng form hiển thị thành công
+    } catch (teleErr) {
+      console.error("Lỗi xử lý tin nhắn Telegram:", teleErr);
+    }
+
+    // 3. Đóng form hiển thị thành công cho khách hàng
     document.getElementById('orderModal').classList.remove('open');
     document.getElementById('successMsg').innerHTML =
       `Cảm ơn <strong>${name}</strong>!<br>
@@ -303,15 +310,24 @@ function submitOrder() {
     
     document.getElementById('successModal').classList.add('open');
     
+    // Reset trạng thái giỏ hàng sạch sẽ
     cart = [];
     updateCartUI();
     ['cusName', 'cusPhone', 'cusAddress', 'cusNote'].forEach(id => {
-      document.getElementById(id).value = '';
+      const el = document.getElementById(id);
+      if (el) el.value = '';
     });
   })
   .catch((error) => {
     console.error("Lỗi gửi đơn hàng lên Firebase: ", error);
     showToast('❌ Gửi đơn hàng thất bại, vui lòng thử lại!');
+  })
+  .finally(() => {
+    // Khôi phục nút bấm về ban đầu
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '✅ Xác nhận đặt hàng';
+    }
   });
 }
  
@@ -324,9 +340,11 @@ function closeSuccess() {
 // ===== TOAST THÔNG BÁO =====
 function showToast(msg) {
   const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2200);
+  if(t) {
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2200);
+  }
 }
  
 // ===== KHỞI CHẠY =====
