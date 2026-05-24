@@ -729,4 +729,238 @@ footer p {
     max-width: 100%;
   }
 }
- 
+ /* ==========================================================================
+   NÂNG CẤP CSS: MODAL CHỌN SIZE & SỐ LƯỢNG
+   ========================================================================== */
+
+/* Định hình lại khung nội dung modal chọn size */
+.size-modal-content {
+  max-width: 420px;
+  width: 90%;
+  padding: 24px;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Tiêu đề modal */
+.size-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px dashed #eee;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+}
+
+.size-modal-header h2 {
+  font-family: 'Baloo 2', cursive;
+  color: #333;
+}
+
+/* Các tiêu đề mục con (Chọn size, Số lượng) */
+.section-title {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: #555;
+  margin-bottom: 12px;
+}
+
+/* Lưới hiển thị các nút chọn Size */
+.size-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+/* Định dạng nút bấm chọn từng Size */
+.size-btn {
+  padding: 12px 8px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  border: 1.5px solid #eaeaea;
+  background: #fbfbfb;
+  color: #444;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.size-btn:hover {
+  border-color: #ff5722;
+  color: #ff5722;
+  background: #fff9f6;
+}
+
+/* Trạng thái khi kích hoạt chọn Size */
+.size-btn.active {
+  border-color: #ff5722;
+  background: #ff5722;
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(255, 87, 34, 0.2);
+}
+
+/* Khu vực tùy chỉnh số lượng */
+.qty-modal-control {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 24px;
+  background: #f7f7f7;
+  padding: 6px 12px;
+  border-radius: 30px;
+  width: fit-content;
+}
+
+.qty-modal-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: #ffffff;
+  color: #333;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  transition: all 0.2s;
+}
+
+.qty-modal-btn:hover {
+  background: #ff5722;
+  color: #fff;
+}
+
+#modalQtyNum {
+  font-family: 'Baloo 2', cursive;
+  font-size: 18px;
+  font-weight: 700;
+  min-width: 24px;
+  text-align: center;
+  color: #333;
+}
+
+/* Phần chân của modal chọn size */
+.size-modal-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #eee;
+  padding-top: 18px;
+  margin-top: 10px;
+}
+
+/* Khu vực hiển thị tổng giá tiền */
+.modal-total-price {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-total-price strong {
+  font-family: 'Baloo 2', cursive;
+  font-size: 22px;
+  color: #ff5722;
+  line-height: 1.2;
+}
+
+/* Nút bấm xác nhận thêm đồ ăn/thức uống vào giỏ */
+.confirm-add-btn {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  background: linear-gradient(135deg, #ff7043, #ff5722);
+  color: #ffffff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(255, 87, 34, 0.3);
+  transition: all 0.2s ease;
+}
+
+.confirm-add-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(255, 87, 34, 0.4);
+}
+
+.confirm-add-btn:active {
+  transform: translateY(1px);
+}
+/* CSS THANH HỖ TRỢ NỔI GÓC MÀNH HÌNH */
+.support-fixed-bar {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 999; /* Đảm bảo luôn nổi trên các thành phần khác */
+}
+
+.support-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 30px;
+  color: white;
+  text-decoration: none;
+  font-family: 'Nunito', sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease;
+}
+
+.support-item:hover {
+  transform: scale(1.05);
+}
+
+/* Màu sắc riêng cho từng nút */
+.support-item.phone {
+  background: #4CAF50; /* Màu xanh lá cây cho điện thoại */
+}
+
+.support-item.zalo {
+  background: #0068FF; /* Màu xanh dương đặc trưng của Zalo */
+}
+
+.support-item.messenger {
+  background: linear-gradient(135deg, #006AFF, #A435FF); /* Màu gradient của Messenger */
+}
+
+.support-icon {
+  font-size: 16px;
+}
+
+/* Ẩn bớt chữ trên màn hình quá nhỏ để đỡ vướng mắt khách */
+@media (max-width: 480px) {
+  .support-fixed-bar {
+    bottom: 15px;
+    right: 15px;
+  }
+  .support-text {
+    display: none; /* Chỉ hiện icon trên điện thoại nhỏ */
+  }
+  .support-item {
+    padding: 12px;
+    border-radius: 50%;
+  }
+  .support-icon {
+    font-size: 20px;
+  }
+}

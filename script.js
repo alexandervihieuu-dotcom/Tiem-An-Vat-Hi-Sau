@@ -1,43 +1,47 @@
 // ===== DỮ LIỆU SẢN PHẨM =====
 const products = [
   // TRÀ
-  { id: 1,  name: 'Trà trái cây',    desc: 'Trà trái cây tươi mát, thơm ngon',    price: 25000, emoji: '🍹', cat: 'drink', badge: ''    },
-  { id: 2,  name: 'Trà dâu tằm',    desc: 'Dâu tằm tươi, vị chua ngọt dịu',        price: 25000, emoji: '🫐', cat: 'drink', badge: ''    },
-  { id: 3,  name: 'Trà xoài',       desc: 'Xoài chín thơm, mát lạnh giải khát',     price: 25000, emoji: '🥭', cat: 'drink', badge: 'hot' },
-  { id: 4,  name: 'Trà mãng cầu',   desc: 'Mãng cầu tươi, thanh mát đặc biệt',     price: 25000, emoji: '🍈', cat: 'drink', badge: ''    },
-  { id: 5,  name: 'Trà dưa lưới',   desc: 'Dưa lưới ngọt thơm, uống cực đã',       price: 28000, emoji: '🍑', cat: 'drink', badge: 'new' },
+  { id: 1,  name: 'Trà trái cây',    desc: 'Trà trái cây tươi mát, thơm ngon',    price: 25000, image: 'tra-trai-cay.jpg',    cat: 'drink', badge: ''    },
+  { id: 2,  name: 'Trà dâu tằm',    desc: 'Dâu tằm tươi, vị chua ngọt dịu',        price: 25000, image: 'tra-dau-tam.jpg',    cat: 'drink', badge: ''    },
+  { id: 3,  name: 'Trà xoài',       desc: 'Xoài chín thơm, mát lạnh giải khát',     price: 25000, image: 'tra-xoai.jpg',       cat: 'drink', badge: 'hot' },
+  { id: 4,  name: 'Trà mãng cầu',    desc: 'Mãng cầu tươi, thanh mát đặc biệt',     price: 25000, image: 'tra-mang-cau.jpg',   cat: 'drink', badge: ''    },
+  { id: 5,  name: 'Trà dưa lưới',    desc: 'Dưa lưới ngọt thơm, uống cực đã',       price: 28000, image: 'tra-dua-luoi.jpg',   cat: 'drink', badge: 'new' },
 
   // SỮA CHUA
-  { id: 6,  name: 'Sữa chua việt quất', desc: 'Sữa chua mịn, việt quất tươi chua ngọt', price: 28000, emoji: '🫐', cat: 'snack', badge: 'hot' },
-  { id: 7,  name: 'Sữa chua xoài',     desc: 'Xoài chín vàng, béo mịn thơm lừng',      price: 28000, emoji: '🥭', cat: 'snack', badge: ''    },
-  { id: 8,  name: 'Sữa chua dâu',      desc: 'Dâu tây tươi, chua ngọt hài hòa',         price: 28000, emoji: '🍓', cat: 'snack', badge: ''    },
-  { id: 9,  name: 'Sữa chua chanh leo',desc: 'Chanh leo chua thanh, sữa chua mát lạnh',  price: 28000, emoji: '🍋', cat: 'snack', badge: ''    },
-  { id: 10, name: 'Sữa chua dưa lưới', desc: 'Dưa lưới ngọt thơm kết hợp sữa chua',    price: 28000, emoji: '🍈', cat: 'snack', badge: ''    },
+  { id: 6,  name: 'Sữa chua việt quất', desc: 'Sữa chua mịn, việt quất tươi chua ngọt', price: 28000, image: 'sua-chua-viet-quat.jpg', cat: 'snack', badge: 'hot' },
+  { id: 7,  name: 'Sữa chua xoài',     desc: 'Xoài chín vàng, béo mịn thơm lừng',      price: 28000, image: 'sua-chua-xoai.jpg',      cat: 'snack', badge: ''    },
+  { id: 8,  name: 'Sữa chua dâu',      desc: 'Dâu tây tươi, chua ngọt hài hòa',         price: 28000, image: 'sua-chua-dau.jpg',       cat: 'snack', badge: ''    },
+  { id: 9,  name: 'Sữa chua chanh leo',desc: 'Chanh leo chua thanh, sữa chua mát lạnh',  price: 28000, image: 'sua-chua-chanh-leo.jpg', cat: 'snack', badge: ''    },
+  { id: 10, name: 'Sữa chua dưa lưới', desc: 'Dưa lưới ngọt thơm kết hợp sữa chua',    price: 28000, image: 'sua-chua-dua-luoi.jpg',  cat: 'snack', badge: ''    },
 
   // ĂN VẶT
-  { id: 11, name: 'Bánh tráng trộn',   desc: 'Bánh tráng trộn đặc biệt, cay ngon',      price: 35000, emoji: '🥗', cat: 'snack', badge: 'hot' },
-  { id: 12, name: 'Bánh tráng cuộn',   desc: 'Cuộn giòn nhân thơm, ăn là ghiền',        price: 25000, emoji: '🌯', cat: 'snack', badge: ''    },
-  { id: 13, name: 'Xoài kí',           desc: 'Xoài tươi nguyên kí, ngọt giòn',           price: 17000, emoji: '🥭', cat: 'snack', badge: ''    },
-  { id: 14, name: 'Xoài cắt hộp',      desc: 'Xoài cắt sẵn tiện lợi, ăn ngay',          price: 25000, emoji: '🍱', cat: 'snack', badge: ''    },
-  { id: 15, name: 'Xoài lắc mắm thái', desc: 'Xoài xanh lắc mắm thái chua cay đặc biệt',price: 30000, emoji: '🌶️', cat: 'snack', badge: 'new' },
+  { id: 11, name: 'Bánh tráng trộn',   desc: 'Bánh tráng trộn đặc biệt, cay ngon',      price: 35000, image: 'banh-trang-tran.jpg',   cat: 'snack', badge: 'hot' },
+  { id: 12, name: 'Bánh tráng cuộn',   desc: 'Cuộn giòn nhân thơm, ăn là ghiền',        price: 25000, image: 'banh-trang-cuon.jpg',   cat: 'snack', badge: ''    },
+  { id: 13, name: 'Xoài kí',           desc: 'Xoài tươi nguyên kí, ngọt giòn',           price: 17000, image: 'xoai-ki.jpg',           cat: 'snack', badge: ''    },
+  { id: 14, name: 'Xoài cắt hộp',      desc: 'Xoài cắt sẵn tiện lợi, ăn ngay',          price: 25000, image: 'xoai-cat-hop.jpg',      cat: 'snack', badge: ''    },
+  { id: 15, name: 'Xoài lắc mắm thái', desc: 'Xoài xanh lắc mắm thái chua cay đặc biệt',price: 30000, image: 'xoai-lac-mam-thai.jpg', cat: 'snack', badge: 'new' },
 ];
  
-// ===== STATE =====
+// ===== STATE GIỎ HÀNG VÀ STATE CHỌN SIZE =====
 let cart = [];
+let currentSelectedProduct = null;
+let currentSelectedSize = 'S';
+let currentSizeSurplus = 0; // Giá tiền cộng thêm của size
+let currentModalQty = 1;
  
 // ===== UTILS =====
 function fmt(price) {
   return price.toLocaleString('vi-VN') + '₫';
 }
  
-// ===== RENDER SẢN PHẨM =====
+// ===== RENDER SẢN PHẨM TRANG CHỦ =====
 function renderProducts(cat) {
   const list = cat === 'all' ? products : products.filter(p => p.cat === cat);
  
   document.getElementById('productGrid').innerHTML = list.map(p => `
     <div class="product-card">
       <div class="product-img">
-        <span>${p.emoji}</span>
+        <img src="${p.image}" alt="${p.name}" style="width:100%; height:100%; object-fit:cover; border-radius:12px 12px 0 0;">
         ${p.badge === 'hot' ? '<span class="badge-hot">🔥 HOT</span>' : ''}
         ${p.badge === 'new' ? '<span class="badge-new">✨ MỚI</span>' : ''}
       </div>
@@ -46,7 +50,7 @@ function renderProducts(cat) {
         <div class="product-desc">${p.desc}</div>
         <div class="product-footer">
           <span class="product-price">${fmt(p.price)}</span>
-          <button class="add-btn" onclick="addToCart(${p.id})">+</button>
+          <button class="add-btn" onclick="openSizeModal(${p.id})">+</button>
         </div>
       </div>
     </div>
@@ -58,32 +62,92 @@ function filterCat(btn, cat) {
   btn.classList.add('active');
   renderProducts(cat);
 }
- 
-// ===== GIỎ HÀNG =====
-function addToCart(id) {
+
+// ===== ĐIỀU KHIỂN MODAL CHỌN SIZE & SỐ LƯỢNG =====
+function openSizeModal(id) {
   const prod = products.find(p => p.id === id);
-  const existing = cart.find(c => c.id === id);
- 
+  if (!prod) return;
+
+  currentSelectedProduct = prod;
+  currentSelectedSize = 'S';
+  currentSizeSurplus = 0;
+  currentModalQty = 1;
+
+  // Cập nhật text tiêu đề tên món lên modal
+  document.getElementById('modalProdName').textContent = prod.name;
+  
+  // Reset trạng thái hoạt động của nút Size về nút 'S' đầu tiên
+  document.querySelectorAll('.size-btn').forEach(btn => btn.classList.remove('active'));
+  document.querySelector('.size-btn').classList.add('active');
+
+  updateSizeModalPriceUI();
+  
+  document.getElementById('sizeModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeSizeModal() {
+  document.getElementById('sizeModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function selectSize(element, sizeName, surplusPrice) {
+  document.querySelectorAll('.size-btn').forEach(btn => btn.classList.remove('active'));
+  element.classList.add('active');
+
+  currentSelectedSize = sizeName;
+  currentSizeSurplus = surplusPrice;
+  updateSizeModalPriceUI();
+}
+
+function changeModalQty(delta) {
+  currentModalQty += delta;
+  if (currentModalQty < 1) currentModalQty = 1; // Số lượng tối thiểu là 1
+  updateSizeModalPriceUI();
+}
+
+function updateSizeModalPriceUI() {
+  document.getElementById('modalQtyNum').textContent = currentModalQty;
+  const singlePrice = currentSelectedProduct.price + currentSizeSurplus;
+  const totalPrice = singlePrice * currentModalQty;
+  document.getElementById('modalTotalPrice').textContent = fmt(totalPrice);
+}
+
+// ===== XÁC NHẬN THÊM VÀO GIỎ =====
+function confirmAddToCart() {
+  const finalPrice = currentSelectedProduct.price + currentSizeSurplus;
+  
+  // Tìm xem trong giỏ đã có món này kèm ĐÚNG SIZE NÀY chưa
+  const existing = cart.find(c => c.id === currentSelectedProduct.id && c.size === currentSelectedSize);
+
   if (existing) {
-    existing.qty++;
+    existing.qty += currentModalQty;
   } else {
-    cart.push({ ...prod, qty: 1 });
+    cart.push({
+      ...currentSelectedProduct,
+      price: finalPrice, // Giá đã cộng tiền size
+      size: currentSelectedSize,
+      qty: currentModalQty
+    });
   }
- 
+
   updateCartUI();
-  showToast(prod.emoji + ' Đã thêm ' + prod.name + '!');
+  closeSizeModal();
+  showToast(`🛒 Đã thêm x${currentModalQty} ${currentSelectedProduct.name} (Size ${currentSelectedSize})!`);
 }
  
-function changeQty(id, delta) {
-  const item = cart.find(c => c.id === id);
+// ===== ĐIỀU CHỈNH SỐ LƯỢNG TRONG GIỎ HÀNG =====
+function changeQty(id, size, delta) {
+  const item = cart.find(c => c.id === id && c.size === size);
   if (!item) return;
  
   item.qty += delta;
-  if (item.qty <= 0) cart = cart.filter(c => c.id !== id);
+  if (item.qty <= 0) cart = cart.filter(c => !(c.id === id && c.size === size));
  
   updateCartUI();
 }
  
+// ===== CẬP NHẬT GIAO DIỆN GIỎ HÀNG =====
 function updateCartUI() {
   const total = cart.reduce((s, c) => s + c.price * c.qty, 0);
   const count = cart.reduce((s, c) => s + c.qty, 0);
@@ -106,15 +170,15 @@ function updateCartUI() {
  
   itemsEl.innerHTML = cart.map(c => `
     <div class="cart-item">
-      <span class="cart-item-emoji">${c.emoji}</span>
+      <img src="${c.image}" alt="${c.name}" style="width:40px; height:40px; object-fit:cover; border-radius:6px; margin-right:10px;">
       <div class="cart-item-info">
-        <div class="cart-item-name">${c.name}</div>
+        <div class="cart-item-name">${c.name} <span style="color:#ff5722; font-weight:bold; font-size:12px;">[Size ${c.size}]</span></div>
         <div class="cart-item-price">${fmt(c.price)}</div>
       </div>
       <div class="qty-control">
-        <button class="qty-btn" onclick="changeQty(${c.id}, -1)">−</button>
+        <button class="qty-btn" onclick="changeQty(${c.id}, '${c.size}', -1)">−</button>
         <span class="qty-num">${c.qty}</span>
-        <button class="qty-btn" onclick="changeQty(${c.id}, 1)">+</button>
+        <button class="qty-btn" onclick="changeQty(${c.id}, '${c.size}', 1)">+</button>
       </div>
     </div>
   `).join('');
@@ -136,14 +200,14 @@ function closeCart() {
   document.body.style.overflow = '';
 }
  
-// ===== MODAL ĐẶT HÀNG =====
+// ===== MODAL XÁC NHẬN ĐƠN HÀNG =====
 function openOrderModal() {
   closeCart();
  
   const total = cart.reduce((s, c) => s + c.price * c.qty, 0);
   let lines = cart.map(c =>
     `<div class="order-line">
-      <span>${c.emoji} ${c.name} x${c.qty}</span>
+      <span>📸 ${c.name} (Size ${c.size}) x${c.qty}</span>
       <span>${fmt(c.price * c.qty)}</span>
     </div>`
   ).join('');
@@ -162,7 +226,7 @@ function closeOrderModal() {
   openCart();
 }
  
-// ===== GỬI ĐƠN HÀNG LÊN FIREBASE =====
+// ===== GỬI ĐƠN HÀNG LÊN FIREBASE & BẮN THÔNG BÁO TELEGRAM =====
 function submitOrder() {
   const name    = document.getElementById('cusName').value.trim();
   const phone   = document.getElementById('cusPhone').value.trim();
@@ -178,16 +242,15 @@ function submitOrder() {
   const payText = { cod: 'Tiền mặt COD', banking: 'Chuyển khoản', momo: 'MoMo', zalo: 'ZaloPay' }[payment];
   const total   = cart.reduce((s, c) => s + c.price * c.qty, 0);
 
-  // 1. Gộp danh sách các món ăn trong giỏ thành chuỗi text gọn gàng
-  const danhSachMonAn = cart.map(c => `${c.name} (x${c.qty})`).join(', ');
+  // Gộp thông tin kèm Size của từng mặt hàng
+  const danhSachMonAn = cart.map(c => `${c.name} [Size ${c.size}] (x${c.qty})`).join(', ');
+  const thoiGianHienTai = new Date().toLocaleString('vi-VN');
 
-  // 2. Kiểm tra xem Firebase đã sẵn sàng chưa đề phòng lỗi tải thư viện
   if (typeof database === 'undefined') {
     alert('Lỗi: Hệ thống Firebase chưa được tải thành công. Vui lòng kiểm tra lại kết nối mạng!');
     return;
   }
 
-  // 3. Đẩy dữ liệu trực tiếp lên nhánh 'don_hang' trên Firebase Realtime Database
   database.ref('don_hang').push({
     tenKhachhang: name,
     soDienThoai: phone,
@@ -196,21 +259,47 @@ function submitOrder() {
     ghiChu: note || "Không có",
     monAn: danhSachMonAn,
     gia: fmt(total),
-    thoiGian: new Date().toLocaleString('vi-VN'),
+    thoiGian: thoiGianHienTai,
     trangThai: "Chờ xử lý"
   })
   .then(() => {
-    // 4. Nếu đẩy thành công, xử lý đóng form và hiển thị giao diện thành công cho khách
+    // TỰ ĐỘNG BẮN THÔNG BÁO VỀ TELEGRAM ĐIỆN THOẠI HIẾU
+    const TOKEN_BOT = "8626165001:AAGkRnfpDXHP1QAm2cc52Vfg8HncYV3lCME";
+    const CHAT_ID = "7994959261";
+
+    const noiDungTinNhan = `
+🔔 <b>CÓ ĐƠN HÀNG MỚI - TIỆM HAI SÁU</b>  
+━━━━━━━━━━━━━━━━━━
+👤 <b>Khách hàng:</b> ${name}
+📞 <b>Số điện thoại:</b> ${phone}
+📍 <b>Địa chỉ giao:</b> ${address}
+🛒 <b>Món đặt:</b> ${danhSachMonAn}
+💰 <b>Tổng tiền:</b> ${fmt(total)}
+💳 <b>Thanh toán:</b> ${payText}
+📝 <b>Ghi chú:</b> ${note || "Không có"}
+⏰ <b>Thời gian:</b> ${thoiGianHienTai}
+━━━━━━━━━━━━━━━━━━
+👉 <i>Vui lòng chuẩn bị món ăn cho khách ngay nhé!</i>
+`;
+
+    fetch(`https://api.telegram.org/bot${TOKEN_BOT}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ chat_id: CHAT_ID, text: noiDungTinNhan, parse_mode: "HTML" })
+    })
+    .then(res => console.log("Thông báo Telegram nổ thành công!"))
+    .catch(err => console.error("Lỗi gửi Telegram:", err));
+
+    // Đóng form hiển thị thành công
     document.getElementById('orderModal').classList.remove('open');
     document.getElementById('successMsg').innerHTML =
       `Cảm ơn <strong>${name}</strong>!<br>
        Đơn hàng <strong>${fmt(total)}</strong> đã được ghi nhận hệ thống.<br>
        Thanh toán: ${payText}<br>
        Giao đến: <em>${address}</em> 🚀`;
-   
+    
     document.getElementById('successModal').classList.add('open');
-   
-    // 5. Làm sạch giỏ hàng và reset lại toàn bộ input form
+    
     cart = [];
     updateCartUI();
     ['cusName', 'cusPhone', 'cusAddress', 'cusNote'].forEach(id => {

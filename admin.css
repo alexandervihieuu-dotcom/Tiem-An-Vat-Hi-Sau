@@ -1,0 +1,68 @@
+/* ==========================================================================
+   CSS CỤM NÚT ĐIỀU CHỈNH TRẠNG THÁI ĐƠN HÀNG (ADMIN)
+   ========================================================================== */
+
+/* Khung bọc các nút trong ô Trạng thái */
+.status-action-group {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap; /* Tự động xuống dòng nếu màn hình admin nhỏ */
+}
+
+/* Định dạng chung cho tất cả nút bấm trạng thái */
+.status-btn {
+  padding: 6px 10px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid #e0e0e0;
+  background-color: #f9f9f9;
+  color: #666;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.status-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* --- TRẠNG THÁI ACTIVE (Khi nút đó được chọn ứng với Firebase) --- */
+
+/* 1. Nút Chờ xử lý */
+.status-btn.btn-wait.active {
+  background-color: #fff9db;
+  color: #f59f00;
+  border-color: #ffe066;
+  font-weight: bold;
+}
+
+/* 2. Nút Đã xác nhận */
+.status-btn.btn-confirm.active {
+  background-color: #e7f5ff;
+  color: #1c7ed6;
+  border-color: #a5d8ff;
+  font-weight: bold;
+}
+
+/* 3. Nút Đang giao hàng */
+.status-btn.btn-shipping.active {
+  background-color: #fff4e6;
+  color: #f76707;
+  border-color: #ffd8a8;
+  font-weight: bold;
+}
+
+/* 4. Nút Đã hoàn thành */
+.status-btn.btn-success.active {
+  background-color: #ebfbee;
+  color: #2b8a3e;
+  border-color: #b2f2bb;
+  font-weight: bold;
+}
+
+/* Làm mờ nhẹ các nút không được chọn để làm nổi bật trạng thái hiện tại */
+.status-action-group:hover .status-btn:not(:hover):not(.active) {
+  opacity: 0.6;
+}
